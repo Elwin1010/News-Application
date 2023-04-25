@@ -23,8 +23,10 @@ class ArticlesRepository @Inject constructor(
     override suspend fun refreshAllArticles() {
         withContext(Dispatchers.IO) {
 
-            val wrapper = api.getArticles();
-            database.dao.upsertArticlesFromNetwork(wrapper.articles);
+            try {
+                val wrapper = api.getArticles();
+                database.dao.upsertArticlesFromNetwork(wrapper.articles);
+            } catch (ignored: Exception) {}
 
         }
     }
