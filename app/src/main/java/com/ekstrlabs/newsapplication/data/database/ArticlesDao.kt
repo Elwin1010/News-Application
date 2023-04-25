@@ -19,7 +19,7 @@ interface ArticlesDao {
 
 
     @Upsert
-    fun upsertArticles(articles: List<DatabaseArticle>)
+    suspend fun upsertArticles(articles: List<DatabaseArticle>)
 
     /*
      * This will INSERT when the primary key combination does not yet exist,
@@ -32,10 +32,10 @@ interface ArticlesDao {
     @Upsert(
         entity = DatabaseArticle::class
     )
-    fun upsertArticlesFromNetwork(articles: List<NetworkArticle>)
+    suspend fun upsertArticlesFromNetwork(articles: List<NetworkArticle>)
 
 
     @Query("UPDATE articles SET isRead = 1 WHERE id = :articleId")
-    fun markArticleAsReadById(articleId: Int)
+    suspend fun markArticleAsReadById(articleId: Int)
 
 }

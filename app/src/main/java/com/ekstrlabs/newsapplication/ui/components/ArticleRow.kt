@@ -71,6 +71,23 @@ fun ArticleRow(
 
             }
 
+            Column(
+                modifier = Modifier.padding(16.dp),
+            ) {
+
+                Text(
+                    text = article.description,
+                    style = MaterialTheme.typography.body2
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = article.categories.joinToString(", "),
+                    style = MaterialTheme.typography.caption
+                )
+
+            }
+
+
 
         }
     }
