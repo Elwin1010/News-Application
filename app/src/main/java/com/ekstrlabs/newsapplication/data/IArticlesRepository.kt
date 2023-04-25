@@ -9,6 +9,6 @@ interface IArticlesRepository {
 
     suspend fun refreshAllArticles()
 
-    suspend fun markAsRead(article: Article)
+    fun markAsRead(article: Article)
 
 }

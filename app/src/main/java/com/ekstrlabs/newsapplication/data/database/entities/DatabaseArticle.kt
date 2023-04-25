@@ -1,5 +1,6 @@
 package com.ekstrlabs.newsapplication.data.database.entities
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.ekstrlabs.newsapplication.models.Article
@@ -15,6 +16,9 @@ data class DatabaseArticle(
     val imageUrl: String,
     val categories: List<String>,
 
+    @ColumnInfo(
+        defaultValue = "false"
+    )
     val isRead: Boolean? = false
 
 )

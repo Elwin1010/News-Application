@@ -29,7 +29,7 @@ class ArticlesRepository @Inject constructor(
         }
     }
 
-    override suspend fun markAsRead(article: Article) {
+    override fun markAsRead(article: Article) {
         database.dao.markArticleAsReadById(article.id)
     }
 

@@ -18,12 +18,15 @@ class ApplicationModule {
 
     @Provides
     @Singleton
+    //TODO: remove fallbackToDestructiveMigration for production
     fun provideArticlesDatabase(app: Application): ArticlesDatabase {
         return Room.databaseBuilder(
-            context = app,
-            name = "articles_db",
-            klass = ArticlesDatabase::class.java
-        ).build()
+                context = app,
+                name = "articles_db",
+                klass = ArticlesDatabase::class.java
+            )
+            .fallbackToDestructiveMigration() // For testing purposes!
+            .build()
     }
 
     @Provides

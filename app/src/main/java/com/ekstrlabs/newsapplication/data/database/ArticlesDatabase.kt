@@ -1,6 +1,7 @@
 package com.ekstrlabs.newsapplication.data.database
 
 import androidx.room.Database
+import androidx.room.TypeConverters
 import androidx.room.RoomDatabase
 import com.ekstrlabs.newsapplication.data.database.entities.DatabaseArticle
 
@@ -9,7 +10,10 @@ import com.ekstrlabs.newsapplication.data.database.entities.DatabaseArticle
     entities = [
         DatabaseArticle::class
     ],
-    version = 1
+    version = 2
+)
+@TypeConverters(
+    ListTypeConverters::class
 )
 abstract class ArticlesDatabase: RoomDatabase() {
 

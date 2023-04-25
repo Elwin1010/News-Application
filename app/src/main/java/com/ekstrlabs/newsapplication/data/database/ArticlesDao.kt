@@ -1,6 +1,7 @@
 package com.ekstrlabs.newsapplication.data.database
 
 import androidx.room.Dao
+import androidx.room.Database
 import androidx.room.Query
 import androidx.room.Upsert
 import com.ekstrlabs.newsapplication.data.database.entities.DatabaseArticle
@@ -10,11 +11,15 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ArticlesDao {
 
-    @Query("SELECT * from articles")
+    @Query("SELECT * FROM articles")
     fun getAllArticles(): Flow<List<DatabaseArticle>>
 
+    @Query("SELECT * FROM articles WHERE id = :articleId")
+    fun getArticleById(articleId: Int): Flow<DatabaseArticle>
+
+
     @Upsert
-    suspend fun upsertArticles(articles: List<DatabaseArticle>)
+    fun upsertArticles(articles: List<DatabaseArticle>)
 
     /*
      * This will INSERT when the primary key combination does not yet exist,
@@ -27,10 +32,10 @@ interface ArticlesDao {
     @Upsert(
         entity = DatabaseArticle::class
     )
-    suspend fun upsertArticlesFromNetwork(articles: List<NetworkArticle>)
+    fun upsertArticlesFromNetwork(articles: List<NetworkArticle>)
 
 
     @Query("UPDATE articles SET isRead = 1 WHERE id = :articleId")
-    suspend fun markArticleAsReadById(articleId: Int)
+    fun markArticleAsReadById(articleId: Int)
 
 }
